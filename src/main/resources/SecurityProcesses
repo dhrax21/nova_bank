@@ -1,0 +1,4 @@
+1. Add necessary dependencies (spring security , and jwt dependencies (impl,jakson,api)
+2. Add password field to users entities;
+3. Create four classes one to handle security configurations and other to handle jwt issues.
+4. Add a class of userDetaiService to handle fetching users by username.

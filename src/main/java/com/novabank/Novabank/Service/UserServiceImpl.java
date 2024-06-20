@@ -1,10 +1,16 @@
 package com.novabank.Novabank.Service;
 
+import com.novabank.Novabank.Config.JwtTokenProvider;
 import com.novabank.Novabank.DTO.*;
+import com.novabank.Novabank.Entity.Role;
 import com.novabank.Novabank.Entity.User;
 import com.novabank.Novabank.Repository.UserRepository;
 import com.novabank.Novabank.Utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,6 +25,14 @@ public class UserServiceImpl implements UserService{
     @Autowired
     TransactionService transactionService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
 
     @Override
     public BankResponse createAccount(UserRequest userRequest) {
@@ -43,8 +57,10 @@ public class UserServiceImpl implements UserService{
                 .accountNumber(AccountUtils.generateAccountNumber())
                 .accountBalance(BigDecimal.ZERO)
                 .email(userRequest.getEmail())
+                .password(passwordEncoder.encode((userRequest.getPassword())))
                 .phoneNumber(userRequest.getPhoneNumber())
                 .alternativePhoneNumber(userRequest.getAlternativePhoneNumber())
+                .role(Role.ROLE_ADMIN)
                 .status("ACTIVE")
                 .build();
 
@@ -193,6 +209,18 @@ public class UserServiceImpl implements UserService{
         destinationAccountUser.setAccountBalance(destinationAccountUser.getAccountBalance().add(request.getAmount()));
 
         return null;
+    }
+
+    public BankResponse login(LoginDto loginDto){
+        Authentication authentication=null;
+        authentication=authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(),loginDto.getPassword())
+        );
+
+       return BankResponse.builder()
+               .responseCode("LOGIN SUCCESS")
+               .responseMessage(jwtTokenProvider.generateToken(authentication))
+               .build();
     }
 
 }

@@ -19,6 +19,7 @@ public class UserRequest {
     private String address;
     private String stateOfOrigin;
     private String email;
+    private String password;
     private String phoneNumber;
     private String alternativePhoneNumber;
     private String status;
@@ -34,6 +35,7 @@ public class UserRequest {
 //        "stateOfOrigin":"newJersy",
 //        "accountBalance":2000,
 //        "email":"ygi@gmail.com",
+//         "password":"werty",
 //        "phoneNumber":"122344",
 //        "alternatePhoneNumber":"12345",
 //        "status":"ACTIVE"
