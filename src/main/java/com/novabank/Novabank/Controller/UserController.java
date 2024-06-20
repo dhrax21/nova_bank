@@ -1,9 +1,6 @@
 package com.novabank.Novabank.Controller;
 
-import com.novabank.Novabank.DTO.BankResponse;
-import com.novabank.Novabank.DTO.CreditDebitRequest;
-import com.novabank.Novabank.DTO.EnquiryRequest;
-import com.novabank.Novabank.DTO.UserRequest;
+import com.novabank.Novabank.DTO.*;
 import com.novabank.Novabank.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +35,10 @@ public class UserController {
     @PostMapping("debit")
     public BankResponse debitAmount(@RequestBody CreditDebitRequest request){
         return userService.debitAccount(request);
+    }
+
+    @PostMapping("transfer")
+    public BankResponse transfer (@RequestBody TransferRequest request){
+        return userService.transfer(request);
     }
 }

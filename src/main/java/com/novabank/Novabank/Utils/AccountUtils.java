@@ -21,6 +21,7 @@ public class AccountUtils {     //for generating random account numbers
     public static final String ACCOUNT_CREDITED_CODE="004";
     public static final String ACCOUNT_CREDITED_MESSAGE="ACCOUNT_CREDITED_SUCCESSFULLY;";
     public static final String INSUFFICIENT_BALANCE = "ACCOUNT HAVE INSUFFICIENT BALANCE";
+    public static final String INSUFFICIENT_BALANCE_CODE="005";
     public static final String ACCOUNT_DEBITED_MESSAGE = "ACCOUNT_DEBITED_MESSAGE SUCCESSFULLY";
 
     public static final String ACCOUNT_DEBITED_CODE="006";

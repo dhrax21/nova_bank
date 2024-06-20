@@ -1,9 +1,6 @@
 package com.novabank.Novabank.Service;
 
-import com.novabank.Novabank.DTO.BankResponse;
-import com.novabank.Novabank.DTO.CreditDebitRequest;
-import com.novabank.Novabank.DTO.EnquiryRequest;
-import com.novabank.Novabank.DTO.UserRequest;
+import com.novabank.Novabank.DTO.*;
 
 public interface UserService {
     BankResponse createAccount(UserRequest userRequest);
@@ -14,4 +11,5 @@ public interface UserService {
     BankResponse creditAccount(CreditDebitRequest request);
 
     BankResponse debitAccount(CreditDebitRequest request);
+    BankResponse transfer(TransferRequest request);
 }
