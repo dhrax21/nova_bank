@@ -41,3 +41,12 @@ Security Measures
 Encryption: Secure storage of sensitive data using encryption.
 JWT Tokens: For secure API authentication and session management.
 Input Validation: To prevent common vulnerabilities such as SQL injection and XSS attacks.
+
+
+
+
+
+
+
+-------------------------+----+--------------------
+
